@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Crear Usuario</title>
+</head>
+<body style="background-color: #000; color: white; font-family: 'Segoe UI', sans-serif;">
+<h1 style="color: gold;">Crear Nuevo Usuario</h1>
+
+<form th:action="@{/admin/usuarios/crear}" th:object="${usuario}" method="post">
+    <label>Nombre:</label><br>
+    <input type="text" th:field="*{nombre}" required><br><br>
+
+    <label>Email:</label><br>
+    <input type="email" th:field="*{email}" required><br><br>
+
+    <label>Contraseña:</label><br>
+    <input type="password" th:field="*{password}"><br><br>
+
+    <label>Rol:</label><br>
+    <select th:field="*{rol}" required>
+        <option value="cliente">Cliente</option>
+        <option value="admin">Administrador</option>
+        <option value="logistica">Logística</option>
+        <option value="inventario">Inventario</option>
+        <option value="publicidad">Publicidad</option>
+    </select><br><br>
+
+    <button type="submit">Guardar</button>
+</form>
+
+<p th:if="${error}" th:text="${error}" style="color: red;"></p>
+
+<a href="/admin/usuarios" style="color: gold;">Volver a la lista</a>
+</body>
+</html>

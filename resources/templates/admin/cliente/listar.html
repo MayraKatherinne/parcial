@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Lista de Clientes</title>
+    <style>
+        body {
+            background-color: #000;
+            color: white;
+            font-family: 'Segoe UI', sans-serif;
+            padding: 40px;
+        }
+
+        table {
+            width: 80%;
+            margin: auto;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #444;
+            color: gold;
+        }
+
+        td {
+            background-color: #111;
+        }
+
+        button {
+            padding: 5px 10px;
+            background-color: gold;
+            border: none;
+            color: black;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #e0c200;
+        }
+
+        .accion-link {
+            color: gold;
+            text-decoration: none;
+        }
+
+        .accion-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<h2 style="text-align: center;">Lista de Clientes</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Correo</th>
+            <th>Teléfono</th>
+            <th>Dirección</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="cliente : ${clientes}">
+            <td th:text="${cliente.nombre}"></td>
+            <td th:text="${cliente.correo}"></td>
+            <td th:text="${cliente.telefono}"></td>
+            <td th:text="${cliente.direccion}"></td>
+            <td>
+                <a th:href="@{/admin/cliente/editar/{id}(id=${cliente.id})}" class="accion-link">Editar</a> |
+                <a th:href="@{/admin/cliente/eliminar/{id}(id=${cliente.id})}" class="accion-link" onclick="return confirm('¿Estás seguro de que quieres eliminar este cliente?')">Eliminar</a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
