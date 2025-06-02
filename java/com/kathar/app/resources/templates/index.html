@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Monaco - Inicio</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #fff;
+            color: #333;
+        }
+
+        .main-header {
+            background-color: #000;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px 40px;
+            position: relative;
+        }
+
+        .logo {
+            height: 50px;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-button {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            text-transform: uppercase;
+            border-bottom: 2px solid transparent;
+            transition: border 0.3s;
+        }
+
+        .nav-button:hover {
+            border-bottom: 2px solid white;
+        }
+
+        .cart-icon {
+            position: absolute;
+            right: 40px;
+            top: 15px;
+            width: 32px;
+            height: 32px;
+        }
+
+        .main-content {
+            padding: 60px 40px;
+            text-align: center;
+        }
+
+        .carousel-section {
+            position: relative;
+            width: 100%;
+            max-width: 1000px;
+            margin: auto;
+            height: 500px;
+        }
+
+        .carousel-wrapper {
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+            height: 100%;
+        }
+
+        .carousel-images {
+            display: flex;
+            width: 300%;
+            height: 100%;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .carousel-image {
+            flex: 0 0 100%;
+            height: 100%;
+        }
+
+        .carousel-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 12px;
+            display: block;
+        }
+
+        input[type="radio"] {
+            display: none;
+        }
+
+        #slide1:checked ~ .carousel-wrapper .carousel-images {
+            transform: translateX(0%);
+        }
+
+        #slide2:checked ~ .carousel-wrapper .carousel-images {
+            transform: translateX(-100%);
+        }
+
+        #slide3:checked ~ .carousel-wrapper .carousel-images {
+            transform: translateX(-200%);
+        }
+
+        .carousel-nav {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .carousel-nav label {
+            cursor: pointer;
+            height: 12px;
+            width: 12px;
+            margin: 0 5px;
+            background-color: #ccc;
+            display: inline-block;
+            border-radius: 50%;
+            transition: background 0.3s;
+        }
+
+        #slide1:checked ~ .carousel-nav label[for="slide1"],
+        #slide2:checked ~ .carousel-nav label[for="slide2"],
+        #slide3:checked ~ .carousel-nav label[for="slide3"] {
+            background-color: #000;
+        }
+
+        .cards-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .card {
+            background-color: #f5f5f5;
+            border-radius: 10px;
+            width: 300px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .add-to-cart-button {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #000;
+            color: white;
+            text-decoration: none;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background 0.3s;
+            cursor: pointer;
+        }
+
+        .add-to-cart-button:hover {
+            background-color: #444;
+        }
+
+        .main-footer {
+            background-color: #000;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .flex-section {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin-top: 60px;
+        }
+
+        .publicidad-card {
+            border: 1px solid #ccc;
+            padding: 10px;
+            width: 300px;
+            margin-bottom: 20px;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+        }
+
+        .publicidad-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .quantity-input {
+            width: 60px;
+            padding: 5px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<header class="main-header">
+    <img src="/logo.jpg" alt="Logo" class="logo">
+    <nav class="nav-buttons">
+
+        <a href="/login" class="nav-button">Login Usuarios</a>
+
+    </nav>
+    <a href="/carrito">
+        <img src="/carrito.png" alt="Carrito" class="cart-icon">
+		<br>
+		<h3>carrito</h3>
+    </a>
+</header>
+
+<main class="main-content">
+
+    <!-- Carrusel -->
+    <section class="carousel-section">
+        <input type="radio" name="carousel" id="slide1" checked>
+        <input type="radio" name="carousel" id="slide2">
+        <input type="radio" name="carousel" id="slide3">
+
+        <div class="carousel-wrapper">
+            <div class="carousel-images">
+                <div class="carousel-image"><img src="/L7.jpg" alt="Perfume 1"></div>
+                <div class="carousel-image"><img src="/L2.jpeg" alt="Perfume 2"></div>
+                <div class="carousel-image"><img src="/L3.jpeg" alt="Perfume 3"></div>
+            </div>
+        </div>
+
+        <div class="carousel-nav">
+            <label for="slide1"></label>
+            <label for="slide2"></label>
+            <label for="slide3"></label>
+        </div>
+    </section>
+
+    <!-- Publicidades y Productos lado a lado -->
+    <div class="flex-section">
+
+        <!-- Publicidades -->
+        <div>
+            <h2>Publicidades</h2>
+            <div th:if="${#lists.isEmpty(publicidades)}">
+                <p>No hay publicidades disponibles.</p>
+            </div>
+            <div th:each="pub : ${publicidades}">
+                <div class="publicidad-card">
+                    <img th:src="@{'/uploads/' + ${pub.imagen}}" alt="Imagen de publicidad" />
+                    <p><strong>Texto:</strong> <span th:text="${pub.texto}"></span></p>
+                    <p><strong>Fecha:</strong> <span th:text="${#temporals.format(pub.fecha, 'dd/MM/yyyy')}"></span></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Productos -->
+        <div>
+            <h2 class="text-center text-white">Productos</h2>
+            <div class="cards-container" th:if="${productos}">
+                <div th:each="prod : ${productos}">
+                    <div class="card">
+                        <img th:src="@{/uploads/{img}(img=${prod.imagen})}" alt="Imagen del producto" />
+                        <h5 th:text="${prod.descripcion}">Descripción</h5>
+                        <p>Precio: $<span th:text="${prod.precio}">0.00</span></p>
+                        <form th:action="@{/carrito/agregar}" method="post">
+                            <input type="hidden" name="productoId" th:value="${prod.id}" />
+                            <input type="number" class="quantity-input" name="cantidad" min="1" max="100" value="1" />
+                            <button type="submit" class="add-to-cart-button">Agregar al carrito</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</main>
+
+<footer class="main-footer">
+    <p>Contacto: 3054291055</p>
+</footer>
+
+</body>
+</html>

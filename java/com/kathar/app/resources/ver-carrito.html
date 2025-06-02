@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Tu Carrito</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; padding: 20px; background-color: #f9f9f9; }
+        table { width: 100%; border-collapse: collapse; margin-top: 30px; }
+        th, td { border: 1px solid #ddd; padding: 12px; text-align: center; }
+        th { background-color: #000; color: white; }
+        a { text-decoration: none; color: red; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <h1>🛒 Carrito de Compras</h1>
+
+    <div th:if="${carrito == null or #lists.isEmpty(carrito.productos)}">
+        <p>No hay productos en el carrito.</p>
+    </div>
+
+    <div th:unless="${carrito == null or #lists.isEmpty(carrito.productos)}">
+        <table>
+            <thead>
+                <tr>
+                    <th>Producto ID</th>
+                    <th>Cantidad</th>
+                    <th>Acción</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="producto : ${carrito.productos}">
+                    <td th:text="${producto.productoId}"></td>
+                    <td th:text="${producto.cantidad}"></td>
+                    <td>
+                        <a th:href="@{/eliminar-carrito(productoId=${producto.productoId}, usuarioId=${carrito.usuarioId})}">Eliminar</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <br>
+    <a href="/" style="color: blue;">← Volver al catálogo</a>
+</body>
+</html>

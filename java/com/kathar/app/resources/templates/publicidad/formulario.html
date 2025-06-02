@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${publicidad.id != null ? 'Editar' : 'Nueva'} + ' Publicidad'"></title>
+</head>
+<body>
+    <h1 th:text="${publicidad.id != null ? 'Editar' : 'Nueva'} + ' Publicidad'"></h1>
+    <form th:action="@{/publicidad/guardar}" method="post" enctype="multipart/form-data" th:object="${publicidad}">
+        <input type="hidden" th:field="*{id}"/>
+        <label>Texto:</label><br/>
+        <textarea th:field="*{texto}" rows="3" cols="40"></textarea><br/>
+
+        <label>Fecha:</label><br/>
+        <input type="date" th:field="*{fecha}"/><br/>
+
+        <label>Imagen:</label><br/>
+        <input type="file" name="archivoImagen"/><br/>
+
+        <button type="submit">Guardar</button>
+    </form>
+    <a href="/publicidad">Volver</a>
+</body>
+</html>

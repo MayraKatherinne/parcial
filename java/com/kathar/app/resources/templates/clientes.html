@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Clientes</title>
+    <style>
+        body {
+            background-color: #000;
+            color: white;
+            font-family: 'Segoe UI', sans-serif;
+            padding: 40px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 12px;
+            border-bottom: 1px solid gold;
+            text-align: left;
+        }
+
+        th {
+            color: gold;
+        }
+
+        a {
+            color: gold;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .btn {
+            background-color: gold;
+            color: black;
+            padding: 8px 16px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .btn:hover {
+            background-color: #e0c200;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Lista de Clientes</h2>
+<a href="/admin/cliente/nuevo" class="btn">+ Crear Cliente</a>
+
+<table>
+    <thead>
+    <tr>
+        <th>Nombre</th>
+        <th>Correo</th>
+        <th>Teléfono</th>
+        <th>Dirección</th>
+        <th>Acciones</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="cliente : ${clientes}">
+        <td th:text="${cliente.nombre}"></td>
+        <td th:text="${cliente.correo}"></td>
+        <td th:text="${cliente.telefono}"></td>
+        <td th:text="${cliente.direccion}"></td>
+        <td><a th:href="@{'/admin/clientes/eliminar/' + ${cliente.id}}" class="btn">Eliminar</a></td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

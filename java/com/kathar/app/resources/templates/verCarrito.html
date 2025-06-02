@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Ver Carrito</title>
+</head>
+<body>
+    <h2>Carrito de Compras</h2>
+    
+    <div th:if="${carrito.productos != null}">
+        <ul>
+            <li th:each="producto : ${carrito.productos}">
+                <p th:text="${producto.nombre} + ' - ' + ${producto.precio} + ' - ' + ${producto.cantidad}"></p>
+            </li>
+        </ul>
+    </div>
+
+    <a href="/index?usuarioId=${carrito.usuarioId}">Volver a la página principal</a>
+</body>
+</html>
